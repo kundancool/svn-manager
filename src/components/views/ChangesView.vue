@@ -33,6 +33,7 @@ const diffLoading = ref(false);
 const message = ref("");
 const busy = ref<"" | "commit" | "revert" | "resolve">("");
 const authOpen = ref(false);
+const authError = ref("");
 const menu = ref<{ node: TreeNode; x: number; y: number } | null>(null);
 const blamePath = ref<string | null>(null);
 
@@ -81,12 +82,16 @@ async function commit(username?: string, password?: string) {
   try {
     const rev = await api.wcCommit(app.localPath, message.value, [...staged.value], username, password);
     authOpen.value = false;
+    authError.value = "";
     app.toast("ok", rev === null ? "Nothing to commit." : `Committed r${rev}.`);
     message.value = "";
     await afterMutation();
     await app.reloadProject();
   } catch (e) {
     if (isAppError(e) && e.kind === "auth_required") {
+      authError.value = username
+        ? "Authentication failed — the server rejected these credentials."
+        : "";
       authOpen.value = true;
     } else {
       app.toast("error", errorMessage(e));
@@ -298,7 +303,8 @@ async function onMenuPick(id: string) {
     v-if="authOpen"
     :host="authHost"
     :busy="busy === 'commit'"
-    @cancel="authOpen = false"
+    :error="authError"
+    @cancel="authOpen = false; authError = ''"
     @submit="(u, p) => commit(u, p)"
   />
 </template>

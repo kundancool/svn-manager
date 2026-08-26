@@ -11,6 +11,7 @@ const props = defineProps<{
   host: string;
   initialUsername?: string;
   busy?: boolean;
+  error?: string;
 }>();
 const emit = defineEmits<{ cancel: []; submit: [username: string, password: string] }>();
 
@@ -50,6 +51,7 @@ async function submit() {
         <input type="checkbox" v-model="remember" />
         Save in the system keychain
       </label>
+      <p v-if="error" class="rounded-md border border-del/40 bg-del/10 px-3 py-2 text-[12px] text-del">{{ error }}</p>
     </div>
     <template #footer>
       <button class="btn btn-ghost" :disabled="busy" @click="emit('cancel')">Cancel</button>

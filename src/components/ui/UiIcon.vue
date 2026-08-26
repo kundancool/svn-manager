@@ -3,6 +3,7 @@ import type { FunctionalComponent } from "vue";
 import {
   ArrowLeft,
   Ban,
+  Bug,
   FileClock,
   Lock,
   LockOpen,
@@ -49,6 +50,7 @@ import {
 const icons: Record<string, FunctionalComponent> = {
   back: ArrowLeft,
   ban: Ban,
+  bug: Bug,
   "file-clock": FileClock,
   lock: Lock,
   "lock-open": LockOpen,

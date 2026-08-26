@@ -37,6 +37,8 @@ pub fn run() {
             commands::rollback_revision,
             commands::checkout_project,
             commands::browse_url,
+            commands::get_debug_logs,
+            commands::clear_debug_logs,
             commands::save_credential,
             commands::delete_credential,
             commands::save_publish,

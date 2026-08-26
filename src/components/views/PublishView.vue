@@ -20,6 +20,7 @@ const diff = ref("");
 const diffLoading = ref(false);
 const message = ref("");
 const authOpen = ref(false);
+const authError = ref("");
 
 const publish = computed(() => app.project?.entry.publish ?? null);
 const wporgHost = computed(() =>
@@ -60,12 +61,16 @@ async function push(username?: string, password?: string) {
   try {
     const rev = await api.publishPush(app.localPath, message.value, username, password);
     authOpen.value = false;
+    authError.value = "";
     app.toast("ok", rev === null ? "Nothing to publish — trunk already matches." : `Published — committed r${rev}.`);
     message.value = "";
     phase.value = "idle";
     preview.value = null;
   } catch (e) {
     if (isAppError(e) && e.kind === "auth_required") {
+      authError.value = username
+        ? "Authentication failed — wp.org rejected these credentials. Check the username and password (wp.org login, not email)."
+        : "";
       authOpen.value = true;
       phase.value = "ready";
     } else {
@@ -148,7 +153,8 @@ async function push(username?: string, password?: string) {
     :host="wporgHost"
     :initial-username="publish?.username ?? ''"
     :busy="phase === 'pushing'"
-    @cancel="authOpen = false"
+    :error="authError"
+    @cancel="authOpen = false; authError = ''"
     @submit="(u, p) => push(u, p)"
   />
 </template>

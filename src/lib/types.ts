@@ -126,6 +126,18 @@ export interface OpenedProject {
   wporg: WporgDetection | null;
 }
 
+export interface CommandLogEntry {
+  at: number;
+  command: string;
+  cwd: string | null;
+  had_stdin: boolean;
+  exit_code: number | null;
+  duration_ms: number;
+  stdout: string;
+  stderr: string;
+  ok: boolean;
+}
+
 export interface AppErrorPayload {
   kind:
     | "svn_not_found"

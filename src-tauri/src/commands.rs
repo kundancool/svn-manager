@@ -432,6 +432,19 @@ pub async fn browse_url(
     client.list_remote(&url, &path).await
 }
 
+// ---- debug console ----
+
+#[tauri::command]
+pub async fn get_debug_logs() -> AppResult<Vec<crate::svn::debuglog::CommandLogEntry>> {
+    Ok(crate::svn::debuglog::entries())
+}
+
+#[tauri::command]
+pub async fn clear_debug_logs() -> AppResult<()> {
+    crate::svn::debuglog::clear();
+    Ok(())
+}
+
 // ---- credentials ----
 
 #[tauri::command]

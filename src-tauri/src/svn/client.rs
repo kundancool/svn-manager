@@ -1,6 +1,7 @@
 use std::path::{Path, PathBuf};
 
 use crate::error::{AppError, AppResult};
+use crate::svn::debuglog;
 use crate::svn::parser;
 use crate::svn::types::{StatusEntry, WcInfo};
 
@@ -51,6 +52,10 @@ impl SvnClient {
         use std::process::Stdio;
         use tokio::io::AsyncWriteExt;
 
+        let started = std::time::Instant::now();
+        let rendered = format!("{} --non-interactive {}", self.bin.display(), args.join(" "));
+        let cwd_str = cwd.map(|p| p.to_string_lossy().into_owned());
+
         let mut cmd = tokio::process::Command::new(&self.bin);
         cmd.args(["--non-interactive"])
             .args(args)
@@ -63,17 +68,45 @@ impl SvnClient {
         if let Some(dir) = cwd {
             cmd.current_dir(dir);
         }
-        let mut child = cmd.spawn()?;
+        let spawned = cmd.spawn();
+        let mut child = match spawned {
+            Ok(c) => c,
+            Err(e) => {
+                debuglog::record(
+                    rendered,
+                    cwd_str,
+                    stdin_data.is_some(),
+                    None,
+                    started.elapsed().as_millis() as u64,
+                    "",
+                    &format!("failed to spawn: {e}"),
+                    false,
+                );
+                return Err(e.into());
+            }
+        };
         if let Some(data) = stdin_data {
             let mut stdin = child.stdin.take().expect("stdin piped");
             stdin.write_all(data.as_bytes()).await?;
             drop(stdin);
         }
         let output = child.wait_with_output().await?;
+        let stdout = String::from_utf8_lossy(&output.stdout).into_owned();
+        let stderr = String::from_utf8_lossy(&output.stderr).into_owned();
+        debuglog::record(
+            rendered,
+            cwd_str,
+            stdin_data.is_some(),
+            output.status.code(),
+            started.elapsed().as_millis() as u64,
+            &stdout,
+            &stderr,
+            output.status.success(),
+        );
         if !output.status.success() {
-            return Err(map_command_error(&String::from_utf8_lossy(&output.stderr)));
+            return Err(map_command_error(&stderr));
         }
-        Ok(String::from_utf8_lossy(&output.stdout).into_owned())
+        Ok(stdout)
     }
 
     pub async fn info(&self, path: &Path) -> AppResult<WcInfo> {

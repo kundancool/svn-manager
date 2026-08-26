@@ -2,6 +2,7 @@ import { invoke } from "@tauri-apps/api/core";
 import type {
   AppConfig,
   BlameLine,
+  CommandLogEntry,
   AppErrorPayload,
   DeployPreview,
   LogEntry,
@@ -30,6 +31,9 @@ export const api = {
   saveCredential: (host: string, username: string, password: string) =>
     invoke<AppConfig>("save_credential", { host, username, password }),
   deleteCredential: (host: string) => invoke<AppConfig>("delete_credential", { host }),
+
+  getDebugLogs: () => invoke<CommandLogEntry[]>("get_debug_logs"),
+  clearDebugLogs: () => invoke<void>("clear_debug_logs"),
 
   // projects
   openProject: (localPath: string) => invoke<OpenedProject>("open_project", { localPath }),
