@@ -5,6 +5,13 @@ All notable changes to SVN Manager are documented here. Format follows
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-08-26
+
+### Added
+- Realtime working copy watching: file changes appear in Unstaged within
+  ~2 seconds (native filesystem watcher, .svn churn ignored, throttled
+  status refresh). Manual Refresh remains as fallback.
+
 ## [0.2.0] - 2026-08-26
 
 ### Added
