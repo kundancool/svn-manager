@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<log>
+<logentry
+   revision="3">
+<author>kundan</author>
+<date>2026-08-26T10:12:08.139848Z</date>
+<paths>
+<path
+   action="A"
+   prop-mods="false"
+   text-mods="true"
+   kind="file">/trunk/extra.txt</path>
+<path
+   action="D"
+   prop-mods="false"
+   text-mods="false"
+   kind="file">/trunk/plugin.php</path>
+</paths>
+<msg>remove plugin, add extra</msg>
+</logentry>
+<logentry
+   revision="2">
+<author>kundan</author>
+<date>2026-08-26T10:12:07.074650Z</date>
+<paths>
+<path
+   action="M"
+   prop-mods="false"
+   text-mods="true"
+   kind="file">/trunk/readme.txt</path>
+</paths>
+<msg>update readme with details</msg>
+</logentry>
+<logentry
+   revision="1">
+<author>kundan</author>
+<date>2026-08-26T09:48:55.085485Z</date>
+<paths>
+<path
+   prop-mods="false"
+   text-mods="false"
+   kind="dir"
+   action="A">/trunk</path>
+<path
+   action="A"
+   prop-mods="false"
+   text-mods="false"
+   kind="dir">/trunk/inc</path>
+<path
+   action="A"
+   prop-mods="false"
+   text-mods="true"
+   kind="file">/trunk/plugin.php</path>
+<path
+   action="A"
+   prop-mods="false"
+   text-mods="true"
+   kind="file">/trunk/readme.txt</path>
+</paths>
+<msg>initial</msg>
+</logentry>
+</log>

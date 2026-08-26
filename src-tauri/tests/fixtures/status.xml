@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<status>
+<target
+   path=".">
+<entry
+   path="trunk/added.css">
+<wc-status
+   item="added"
+   revision="-1"
+   props="none">
+</wc-status>
+</entry>
+<entry
+   path="trunk/inc/new-unversioned.js">
+<wc-status
+   props="none"
+   item="unversioned">
+</wc-status>
+</entry>
+<entry
+   path="trunk/plugin.php">
+<wc-status
+   item="deleted"
+   revision="1"
+   props="none">
+<commit
+   revision="1">
+<author>kundan</author>
+<date>2026-08-26T09:48:55.085485Z</date>
+</commit>
+</wc-status>
+</entry>
+<entry
+   path="trunk/readme.txt">
+<wc-status
+   item="modified"
+   revision="1"
+   props="none">
+<commit
+   revision="1">
+<author>kundan</author>
+<date>2026-08-26T09:48:55.085485Z</date>
+</commit>
+</wc-status>
+</entry>
+</target>
+</status>

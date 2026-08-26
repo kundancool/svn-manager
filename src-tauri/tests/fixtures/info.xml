@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<info>
+<entry
+   kind="dir"
+   path="."
+   revision="1">
+<url>file:///private/tmp/claude-501/-Users-kundan-www-svn-manager/7bd3e4a5-31a1-4282-ac8a-c50c87306b9f/scratchpad/fixgen/repo</url>
+<relative-url>^/</relative-url>
+<repository>
+<root>file:///private/tmp/claude-501/-Users-kundan-www-svn-manager/7bd3e4a5-31a1-4282-ac8a-c50c87306b9f/scratchpad/fixgen/repo</root>
+<uuid>4fa19b76-20c5-4928-81c2-a1cd933a0fd8</uuid>
+</repository>
+<wc-info>
+<wcroot-abspath>/private/tmp/claude-501/-Users-kundan-www-svn-manager/7bd3e4a5-31a1-4282-ac8a-c50c87306b9f/scratchpad/fixgen/wc</wcroot-abspath>
+<schedule>normal</schedule>
+<depth>infinity</depth>
+</wc-info>
+<commit
+   revision="1">
+<author>kundan</author>
+<date>2026-08-26T09:48:55.085485Z</date>
+</commit>
+</entry>
+</info>
