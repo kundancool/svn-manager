@@ -5,6 +5,19 @@ All notable changes to SVN Manager are documented here. Format follows
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-08-26
+
+### Added
+- Debug console: bug icon in the status bar opens a CLI-style log of every
+  svn command with exit codes, timing, and output (passwords never logged —
+  they pass to svn over stdin).
+- Auth dialogs explain rejected credentials instead of silently reopening.
+
+### Changed
+- Dependencies to latest (Vite 8, GitHub Actions v7, tauri-action v1);
+  TypeScript stays on 5.x until vue-tsc supports the TypeScript 7 layout.
+- Tag releases publish directly instead of creating hidden drafts.
+
 ## [0.1.0] - 2026-08-26
 
 First release.
