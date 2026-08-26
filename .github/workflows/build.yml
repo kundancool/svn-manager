@@ -45,7 +45,7 @@ jobs:
         run: npm run tauri build
 
       - name: Upload bundles
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: svn-manager-${{ matrix.name }}
           if-no-files-found: error
