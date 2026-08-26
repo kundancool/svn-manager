@@ -4,10 +4,12 @@ pub mod creds;
 pub mod deploy;
 pub mod error;
 pub mod svn;
+pub mod watch;
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
+        .manage(watch::WatchState::default())
         .plugin(tauri_plugin_dialog::init())
         .plugin(tauri_plugin_opener::init())
         .invoke_handler(tauri::generate_handler![
@@ -37,6 +39,8 @@ pub fn run() {
             commands::rollback_revision,
             commands::checkout_project,
             commands::browse_url,
+            watch::watch_start,
+            watch::watch_stop,
             commands::get_debug_logs,
             commands::clear_debug_logs,
             commands::save_credential,

@@ -32,6 +32,8 @@ export const api = {
     invoke<AppConfig>("save_credential", { host, username, password }),
   deleteCredential: (host: string) => invoke<AppConfig>("delete_credential", { host }),
 
+  watchStart: (localPath: string) => invoke<void>("watch_start", { localPath }),
+  watchStop: () => invoke<void>("watch_stop"),
   getDebugLogs: () => invoke<CommandLogEntry[]>("get_debug_logs"),
   clearDebugLogs: () => invoke<void>("clear_debug_logs"),
 

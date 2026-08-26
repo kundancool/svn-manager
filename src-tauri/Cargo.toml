@@ -30,6 +30,7 @@ ignore = "0.4.33"
 tauri-plugin-dialog = "2.7.2"
 globset = "0.4.20"
 keyring = "4.1.6"
+notify = "8.2.0"
 
 [dev-dependencies]
 tempfile = "3.27.0"
